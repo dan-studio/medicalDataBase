@@ -1,0 +1,63 @@
+body{
+  margin: 0;
+}
+header{
+  height:35px;
+  background-color: #112;
+  color: white;
+}
+img{
+  height: 35px;
+  margin-top: 3px;
+  margin-left: 20px;
+}
+.title{
+  font-size: 16px;
+  margin: 8px;
+}
+.madeBy{
+  font-size: 12px;
+}
+.login{
+  margin-top: 20px;
+}
+.logoutButton{
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  float: right;
+  padding: 7px 30px;
+}
+.input-group{
+  width: 100%;
+  margin: 30px auto;
+  color:#333;
+}
+.registerbar{
+  margin-right: 30px;
+}
+.regcomment h6{
+  display: inline;
+}
+.inline{
+  display: inline;
+}
+.regcomment p{
+  font-size: 11px;
+  color: rgb(255, 67, 67);
+  display: inline;
+  margin-left: 30px;
+}
+.notice{
+  color:rgb(255, 67, 67);
+  margin: 20px;
+}
+.form-check{
+  margin: 0 0 0 20px;
+}
+.deletebutton{
+  color: rgb(255, 67, 67);
+}
+.select{
+  height: 38px;
+}

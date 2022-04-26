@@ -1,0 +1,44 @@
+<%- include('../partials/head')%>
+<%- include('../partials/header')%>
+<h1>가입하기</h1>
+<form id="reg-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="form-group">
+          <label class="inline" for="exampleInputEmail1">E-mail</label>
+          <p class="inline notice">* 당근서비스 메일 형식으로 입력해 주세요</p>
+          <input type="text" class="form-control" placeholder="E-mail" id="useremail">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" class="form-control" placeholder="Name" id="username">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" placeholder="Password" id="userpassword">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Confirm Password</label>
+          <input type="password" class="form-control" placeholder="Confirm Password" id="cfpassword">
+        </div>
+        <p class="notice">* 회원가입 후 관리자의 승인을 받아야 사용가능합니다.</p>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" id="agreement">
+          <label class="form-check-label" for="flexCheckDefault">
+            회원가입에 동의합니다.
+          </label>
+        </div>
+        <button onclick="registerMember()" class="btn btn-white">회원가입</button>
+        <button onclick="deleteAll()" class="btn btn-white">초기화</button>
+        <a href="/" class="btn btn-white" style="color: rgb(47, 111, 230);">이미
+          가입하셨나요?</a>
+      </div>
+    </div>
+  </div>
+</form>
+<script src="../../public/js/register.js"> </script>
+<!--flask js 호출-->
+</body>
+
+</html>
