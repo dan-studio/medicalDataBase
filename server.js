@@ -14,12 +14,9 @@ const app = express()
 
 //.env 파일 불러오기
 require('dotenv').config();
+
 //DB 세팅
-mongoose.connect(process.env.MONGO_URL, { //로컬
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  //useCreateIndex: true //몽구스 버전이 6.0이상이라면 몽구스는 항상 useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false, 로 기억하고 실행하기 때문에 더이상 지원하지 않는다
-})
+mongoose.connect(process.env.MONGO_URL)
 const db = mongoose.connection;
 db.once('open', function () {
   console.log('DB Connected')
@@ -32,10 +29,9 @@ db.on('error', function (err) {
 app.set('view engine', 'ejs')
 app.use('/public', express.static(__dirname + '/public'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
+app.use(session({secret: process.env.COOKIE_SECRET, resave: true, saveUninitialized: true}));
 
 //Routes
 app.use('/', require('./routes/home'))
@@ -48,15 +44,10 @@ app.listen(port, () => {
   console.log('server up at : ' + port)
 })
 
-//패스포트 session
-app.use(session({
-  secret: process.env.COOKIE_SECRET,
-  resave: true,
-  saveUninitialized: true
-}));
 //passport // 2
 app.use(passport.initialize())
 app.use(passport.session())
+
 //custom middlewares //3
 app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
@@ -66,9 +57,6 @@ app.use(function (req, res, next) {
 app.use('/static', express.static(path.join(__dirname, 'static'))) // static 폴더 파일 불러오기
 
 // GET method route
-
-
-
 app.get('/products', (req, res) => {
 
   Products.find({})
