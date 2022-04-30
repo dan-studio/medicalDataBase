@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
 
-const ProductsSchema = mongoose.Schema({
+const PostsSchema = mongoose.Schema({
   sort: {
     type: String,
-    required: true,
+    required: [true, '제품 유형을 선택해 주세요']
   },
   compName: {
     type: String,
-    required: true
+    required: [true, '제조사를 입력해 주세요']
 
   },
   prodName: {
     type: String,
-    required: true,
+    required: [true, '제품명을 입력해 주세요'],
     unique: true //동일 제품명 사용불가
   },
   regDate: {
@@ -22,14 +22,14 @@ const ProductsSchema = mongoose.Schema({
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'products',
+    ref: 'user',
     required: true
   }
 }, {
-  collection: 'products',
+  collection: 'posts',
   versionKey: false
 })
 
-const Products = mongoose.model('products', ProductsSchema, 'products')
+const Posts = mongoose.model('posts', PostsSchema)
 
-module.exports = Products
+module.exports = Posts

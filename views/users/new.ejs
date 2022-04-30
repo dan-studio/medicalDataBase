@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head')%>
+</head>
+<body>
+  <%- include('../partials/nav')%>
+<h1>가입하기</h1>
+<form id="reg-form" action="/users" method="post">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="form-group">
+          <label class="inline" for="exampleInputEmail1">E-mail</label>
+          <p class="inline notice regcomment">* 당근서비스 메일 형식으로 입력해 주세요</p>
+          <input type="text" id="useremail" name="useremail" value="<%= user.useremail %>" class="form-control <%= (errors.useremail)?'is-invalid':'' %>" placeholder="email"> <!-- 1, 2 -->
+            <% if(errors.useremail){ %> <!-- 3 -->
+              <span class="invalid-feedback"><%= errors.useremail.message %></span>
+            <% } %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" id="username" name="username" value="<%= user.username %>" class="form-control <%= (errors.username)?'is-invalid':'' %>" placeholder="name"> <!-- 1, 2 -->
+            <% if(errors.username){ %> <!-- 3 -->
+              <span class="invalid-feedback"><%= errors.username.message %></span>
+            <% } %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" id="password" name="password" value="" class="form-control <%= (errors.password)?'is-invalid':'' %>" placeholder="password"> <!-- 1, 2 -->
+            <% if(errors.password){ %> <!-- 3 -->
+              <span class="invalid-feedback"><%= errors.password.message %></span>
+            <% } %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Confirm Password</label>
+          <input type="password" id="passwordConfirmation" name="passwordConfirmation" value="" class="form-control <%= (errors.passwordConfirmation)?'is-invalid':'' %>" placeholder="confirm password"> <!-- 1, 2 -->
+            <% if(errors.passwordConfirmation){ %> <!-- 3 -->
+              <span class="invalid-feedback"><%= errors.passwordConfirmation.message %></span>
+            <% } %>
+        </div>
+         <% if(errors.unhandled){ %> <!-- 4 -->
+          <div class="alert alert-danger">
+            <%= errors.unhandled %>
+          </div>
+        <% } %>
+        
+        <button type="submit" class="btn btn-white">회원가입</button>
+        <button onclick="deleteAll()" class="btn btn-white">초기화</button>
+        <a href="/login" class="btn btn-white" style="color: rgb(47, 111, 230);">이미
+          가입하셨나요?</a>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  function deleteAll() {
+  event.preventDefault();
+  let useremail = $('#useremail').val('');
+  let username = $('#username').val('');
+  let password = $('#userpassword').val('');
+  let cfpassword = $('#cfpassword').val('')
+}
+</script>
+<!--flask js 호출-->
+</body>
+
+</html>

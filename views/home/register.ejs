@@ -1,5 +1,10 @@
-<%- include('../partials/head')%>
-<%- include('../partials/header')%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head')%>
+</head>
+<body>
+  <%- include('../partials/nav')%>
 <h1>가입하기</h1>
 <form id="reg-form">
   <div class="container">
@@ -20,7 +25,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Confirm Password</label>
-          <input type="password" class="form-control" placeholder="Confirm Password" id="cfpassword">
+          <input type="password" class="form-control" placeholder="Confirm Password" id="passwordConfirmation">
         </div>
         <p class="notice">* 회원가입 후 관리자의 승인을 받아야 사용가능합니다.</p>
         <div class="form-check">

@@ -1,8 +1,8 @@
 //할 것 : 리스트 개수 및 페이지 설정, mongoDB, 찾기기능, 번호 부여하기, 로그인기능
 
-$(document).ready(function () {
-  showProductList();
-});
+// $(document).ready(function () {
+//   showProductList();
+// });
 
 async function registerProduct() {
   event.preventDefault()

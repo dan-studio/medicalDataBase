@@ -1,0 +1,14 @@
+
+<% if(posts == null || posts.length == 0){ %>
+  <li class="list-group-item"> There is no product yet.</li>
+<% } %>
+<% posts.forEach(function(posts) { %>
+<tr>
+  <td><%= posts.sort %></td>
+  <td><%= posts.compName %></td>
+  <td><%= posts.prodName %></td>
+  <td><%= posts.regDate %></td>
+  <td><%= posts.author %></td>
+  <td><form class="deletebutton" action="/posts/<%=posts.prodName%>?_method=delete" method="post" class="d-inline"><a href="javascript:void(0)" onclick="confirm('정말 해당 의약품을 삭제하시겠어요?')?this.parentElement.submit():null;">삭제</a></form></td>
+</tr>
+<% }) %>

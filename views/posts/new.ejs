@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head')%>
+</head>
+
+<body>
+  <%- include('../partials/nav')%>
+  <div class="container input-group">
+    <div class="registerbar">
+      <div class="regcomment">
+        <h6>제품 등록</h6>
+        <p>* 제품명 등록 시 띄어쓰기 없이 입력해 주세요</p>
+      </div>
+      <form id="reg-form" action="/posts" method="post">
+        <div class="input-group col-md-12">
+          <div class="form">
+            <select onchange="getListValue()"
+              class="btn btn-white btn-md border select <%= (post.sort)?'is-invalid':'' %>" id="sort"
+              value="<%= post.sort %>">
+              <option value="none" selected disabled>제품 유형</option>
+              <option value="건강기능식품">건강기능식품</option>
+              <option value="고형차">고형차</option>
+              <option value="기타가공품">기타가공품</option>
+              <option value="액상차">액상차</option>
+              <option value="추출가공식품">추출가공식품</option>
+              <option value="혼합음료">혼합음료</option>
+              <option value="홍삼/인삼음료">홍삼/인삼음료</option>
+            </select>
+            <% if(errors.sort){ %>
+            <span class="invalid-feedback"><%= errors.sort.message %></span>
+            <% } %>
+          </div>
+          <div class="input">
+            <input type="text" placeholder="제조사" id="compName" name="compName" value="<%= post.compName %>"
+              class="form-control <%= (post.compName)?'is-invalid':'' %>">
+            <% if(errors.compName){ %>
+            <span class="invalid-feedback"><%= errors.compName.message %></span>
+            <% } %>
+          </div>
+          <div class="input">
+            <input type="text" placeholder="제품명" id="prodName" name="prodName" value="<%= post.prodName %>"
+              class="form-control <%= (post.prodName)?'is-invalid':'' %>">
+            <% if(errors.prodName){ %>
+            <span class="invalid-feedback"><%= errors.prodName.message %></span>
+            <% } %>
+          </div>
+          <% if(errors.unhandled){ %>
+          <div class="invalid-feedback d-block">
+            <%= errors.unhandled %>
+          </div>
+          <% } %>
+          <div class="input">
+            <button type="submit" class="btn btn-white border">등록</button>
+            <a href="/posts" class="btn btn-white border" style="color:rgb(64, 103, 222)">돌아가기</a>
+
+          </div>
+        </div>
+      </form>
+      <script>
+        function getListValue() {
+          let listValue = $('#sort').val();
+          console.log(listValue)
+        }
+      </script>
+    </div>
