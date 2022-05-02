@@ -64,6 +64,9 @@ img{
 .deletebutton{
   color: rgb(255, 67, 67);
 }
+.sortSelect{
+  width: 1000px;
+}
 .select{
   height: 38px;
 }
