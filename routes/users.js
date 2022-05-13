@@ -32,7 +32,7 @@ router.post('/', function(req, res){
   });
 });
 // show
-router.get('/:username', function(req, res){
+router.get('/:username', util.isLoggedin, checkPermission, function(req, res){
   User.findOne({username:req.params.username}, function(err, user){
     if(err) return res.json(err);
     res.render('users/show', {user:user});
@@ -48,3 +48,11 @@ router.delete('/:useremail', function(req, res){
 });
 
 module.exports = router;
+function checkPermission(req, res, next){
+  User.findOne({username:req.params.username}, function(err, user){
+   if(err) return res.json(err);
+   if(user.id != req.user.id) return util.noPermission(req, res);
+ 
+   next();
+  });
+ }

@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 });
 
 // New
-router.get('/new', function (req, res) {
+router.get('/new', util.isLoggedin, function (req, res) {
   var post = req.flash('post')[0] || {};
   var errors = req.flash('errors')[0] || {};
   res.render('posts/new', {
@@ -28,7 +28,7 @@ router.get('/new', function (req, res) {
 });
 
 // create
-router.post('/', function (req, res) {
+router.post('/', util.isLoggedin, function (req, res) {
   req.body.author = req.user._id;
   Post.create(req.body, function (err, post) {
     if (err) {
@@ -41,7 +41,7 @@ router.post('/', function (req, res) {
 });
 
 // destroy
-router.delete('/:id', function (req, res) {
+router.delete('/:id', util.isLoggedin, function (req, res) {
   Post.deleteOne({
     _id: req.params.id
   }, function (err) {
@@ -51,3 +51,13 @@ router.delete('/:id', function (req, res) {
 });
 
 module.exports = router;
+
+//private functions 
+function checkPermission(req, res, next){
+  Post.findOne({_id:req.params.id}, function(err, post){
+    if(err) return res.json(err);
+    if(post.author != req.user.id) return util.noPermission(req, res);
+
+    next();
+  })
+}

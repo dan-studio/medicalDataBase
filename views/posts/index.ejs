@@ -31,7 +31,9 @@
         </div>
         <div class="input">
           <button onclick="search()" type="button" class="btn btn-white border">검색</button>
+          <% if(isAuthenticated){%>
           <a href="/posts/new" class="btn btn-white border" style="color:rgb(64, 103, 222)">제품 등록</a>
+          <%}%>
         </div>
       </div>
     </div>

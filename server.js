@@ -50,7 +50,7 @@ app.use('/posts', require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 
 //포트 세팅
-const port = 3000;
+const port = process.env.PORT;
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
 });
