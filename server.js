@@ -14,7 +14,6 @@ const util = require('./util')
 require('dotenv').config();
 
 //DB 세팅
-// mongoose.connect(process.env.MONGO_URL_UBUNTU)//aws서버용
 mongoose.connect(process.env.MONGO_URL)
 // mongoose.connect(process.env.MONGO_URL_OFFICE)//aws서버용
 
@@ -49,7 +48,7 @@ app.use(function(req,res,next){
 
 //Routes
 app.use('/', require('./routes/home'));
-app.use('/posts', require('./routes/post'));
+app.use('/posts', require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 
 //포트 세팅

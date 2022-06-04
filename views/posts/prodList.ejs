@@ -1,19 +1,19 @@
 <% if(posts == null || posts.length == 0){ %>
-<li class="list-group-item"> There is no product yet.</li>
-<% } %>
-<% posts.forEach(function(post) { %>
-<tr>
-  <td><%= post.sort %></td>
-  <td><%= post.compName %></td>
-  <td><%= post.prodName %></td>
-  <td id="regDate"><%= post.regDate %></td>
-  <td><%= post.author ? post.author.username : "" %></td>
-  <td>
-    <% if(isAuthenticated && post.author && currentUser.id == post.author.id){%>
-    <form class="deletebutton" action="/posts/<%=post._id%>?_method=delete" method="post" class="d-inline"><a
-        href="javascript:void(0)" onclick="confirm('정말 해당 의약품을 삭제하시겠어요?')?this.parentElement.submit():null;" style="text-decoration-line: none;">❌</a>
-    </form>
-    <%}%>
-  </td>
-</tr>
-<% }) %>
+  <li class="list-group-item"> There is no product yet.</li>
+  <% } %>
+  <% posts.forEach(function(post) { %>
+  <tr>
+    <td><%= post.sort %></td>
+    <td><%= post.compName %></td>
+    <td><%= post.prodName %></td>
+    <td id="regDate"><%= post.regDate %></td>
+    <td><%= post.author ? post.author.username : "" %></td>
+    <td>
+      <% if(isAuthenticated && post.author && currentUser.id == post.author.id){%>
+      <form class="deletebutton" action="/posts/<%=post._id%>?_method=delete" method="post" class="d-inline"><a
+          href="javascript:void(0)" onclick="confirm('정말 해당 의약품을 삭제하시겠어요?')?this.parentElement.submit():null;" style="text-decoration-line: none;">❌</a>
+      </form>
+      <%}%>
+    </td>
+  </tr>
+  <% }) %>
