@@ -70,3 +70,18 @@ img{
 .select{
   height: 38px;
 }
+.pagination {
+  height: 36px;
+  margin: 18px 0;
+  background-color: white;
+}
+.show{
+  width: 100px;
+  margin-left: 80%;
+}
+tr #regDate{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+}

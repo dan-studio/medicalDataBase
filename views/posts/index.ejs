@@ -13,29 +13,25 @@
         <h6>제품 검색</h6>
         <p>* 제품 검색 시 띄어쓰기 없이 입력해 주세요</p>
       </div>
-      <div class="input-group col-md-12">
+      <form action="/posts" method="get" class="input-group col-md-12">
         <div class="form">
-          <select onchange="getListValue()" class="btn btn-white btn-md border select" id="sort">
-            <option value="none" selected disabled>제품 유형</option>
-            <option value="건강기능식품">건강기능식품</option>
-            <option value="고형차">고형차</option>
-            <option value="기타가공품">기타가공품</option>
-            <option value="액상차">액상차</option>
-            <option value="추출가공식품">추출가공식품</option>
-            <option value="혼합음료">혼합음료</option>
-            <option value="홍삼/인삼음료">홍삼/인삼음료</option>
+          <select class="btn btn-white btn-md border select" id="sort" name="searchType">
+            <option value="compName,prodName" <%= searchType=='compName,prodName'?'selected':''%>>전체 검색</option>
+            <option value="compName" <%= searchType=='compName'?'selected':''%>>제조사</option>
+            <option value="prodName" <%= searchType=='prodName'?'selected':''%>>제품명</option>
           </select>
         </div>
         <div class="input">
-          <input id="search" type="text" class="form-control" placeholder="검색">
+          <input id="search" type="text" minLength="2" name="searchText" class="form-control" placeholder="검색"
+            value="<%= searchText %>">
         </div>
         <div class="input">
-          <button onclick="search()" type="button" class="btn btn-white border">검색</button>
+          <button type="submit" class="btn btn-white border">검색</button>
           <% if(isAuthenticated){%>
           <a href="/posts/new" class="btn btn-white border" style="color:rgb(64, 103, 222)">제품 등록</a>
           <%}%>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div class="container mt-5">
@@ -53,15 +49,56 @@
       </thead>
       <tbody id="medList">
         <%- include('../posts/prodList') %>
-      </tbody>
-    </table>
-  </div>
+          </tbody>
+          </table>
+          <nav>
+            <%
+    let offset = 2;
+    let previousBtnEnabled = currentPage>1;
+    let nextBtnEnabled = maxPage>currentPage;
+    %>
+            <ul class="pagination pagination-sm justify-content-center align-items-center h-100 mb-0">
+              <li class="page-item <%= previousBtnEnabled?'':'disabled' %>">
+                <a class="page-link" href="/posts?page=<%= currentPage-1 %>&limit=<%= limit %>"
+                  <%= previousBtnEnabled?'':'tabindex=-1' %>>«</a>
+              </li>
+              <% for(i=1;i<=maxPage;i++){ %>
+              <% if(i==1 || i==maxPage || (i>=currentPage-offset && i<=currentPage+offset)){ %>
+              <li class="page-item <%= currentPage==i?'active':'' %>"><a class="page-link"
+                  href="/posts?page=<%= i %>&limit=<%= limit %>"> <%= i %> </a></li>
+              <% } else if(i==2 || i==maxPage-1){ %>
+              <li><a class="page-link">...</a></li>
+              <% } %>
+              <% } %>
+              <li class="page-item <%= nextBtnEnabled?'':'disabled' %>">
+                <a class="page-link" href="/posts?page=<%= currentPage+1 %>&limit=<%= limit %>"
+                  <%= nextBtnEnabled?'':'tabindex=-1' %>>»</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <form action="/posts" method="get">
+          <!-- 4 -->
+          <div class="form-row">
+
+            <div class="show form-group col-3">
+              <label>Show</label>
+              <select name="limit" class="custom-select"
+                onchange="this.parentElement.parentElement.parentElement.submit()">
+                <option value="10" <%= limit==10?'selected':'' %>>10 posts</option>
+                <option value="20" <%= limit==20?'selected':'' %>>20 posts</option>
+              </select>
+            </div>
+
+          </div>
+        </form>
 </body>
 <script>
   function getListValue() {
     let listValue = $('#sort').val();
     console.log(listValue)
   }
+  
 </script>
 
 </html>

@@ -44,35 +44,35 @@ $.ajax({
 }
 
 
-function showProductList() {
-  $.ajax({
-    type: "GET",
-    url: "/list",
-    data: {},
-    success: function (response) {
-      let lists = response['all_lists']
-      for (let i = 0; i < lists.length; i++) {
-        let index = lists[i];
-        let sort = lists[i]['sort']
-        let compName = lists[i]['compName']
-        let prodName = lists[i]['prodName']
-        let regDate = lists[i]['regDate']
+// function showProductList() {
+//   $.ajax({
+//     type: "GET",
+//     url: "/list",
+//     data: {},
+//     success: function (response) {
+//       let lists = response['all_lists']
+//       for (let i = 0; i < lists.length; i++) {
+//         let index = lists[i];
+//         let sort = lists[i]['sort']
+//         let compName = lists[i]['compName']
+//         let prodName = lists[i]['prodName']
+//         let regDate = lists[i]['regDate']
 
-        var temp_html = `<tr>
-                              <td>${sort}</td>
-                              <td>${compName}</td>
-                              <td>${prodName}</td>
-                              <td>${regDate}</td>
-                              <td></td>
-                              <td><a href="#" onclick="deleteConfirm('${prodName}')" class="deletebutton">삭제</a></td>
-                            </tr>`;
-        //등록순에 따라 순서 삽입하기.
-        $("#medList").append(temp_html);
-        console.log(lists[i])
-      }
-    }
-  })
-}
+//         var temp_html = `<tr>
+//                               <td>${sort}</td>
+//                               <td>${compName}</td>
+//                               <td>${prodName}</td>
+//                               <td>${regDate}</td>
+//                               <td></td>
+//                               <td><a href="#" onclick="deleteConfirm('${prodName}')" class="deletebutton">삭제</a></td>
+//                             </tr>`;
+//         //등록순에 따라 순서 삽입하기.
+//         $("#medList").append(temp_html);
+//         console.log(lists[i])
+//       }
+//     }
+//   })
+// }
 
 function deleteConfirm(prodName) {
   let confirmAction = confirm("정말로 삭제하시겠어요?");
@@ -93,13 +93,3 @@ function deleteConfirm(prodName) {
   }
 }
 
-function search() {
-  let txt = $("#search").val();
-  if (txt == '') {
-    alert('텍스트를 입력하세요!')
-  } else {
-    checked
-    alert(txt);
-    console.log(checked)
-  }
-}

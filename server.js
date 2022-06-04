@@ -8,6 +8,7 @@ const passport = require('./config/passport')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const app = express()
+const util = require('./util')
 
 //.env 파일 불러오기
 require('dotenv').config();
@@ -15,6 +16,8 @@ require('dotenv').config();
 //DB 세팅
 // mongoose.connect(process.env.MONGO_URL_UBUNTU)//aws서버용
 mongoose.connect(process.env.MONGO_URL)
+// mongoose.connect(process.env.MONGO_URL_OFFICE)//aws서버용
+
 const db = mongoose.connection;
 db.once('open', function () {
   console.log('DB Connected')
@@ -46,7 +49,7 @@ app.use(function(req,res,next){
 
 //Routes
 app.use('/', require('./routes/home'));
-app.use('/posts', require('./routes/posts'));
+app.use('/posts', require('./routes/post'));
 app.use('/users', require('./routes/users'));
 
 //포트 세팅
