@@ -4,7 +4,7 @@ const util = require('../util')
 const User = require('../models/User');
 
 //index
-router.get('/', function(req, res){
+router.get('/admin-users', function(req, res){
   User.find({})
     .sort({useremail:1})
     .exec(function(err, users){
