@@ -35,17 +35,17 @@
             <% } %>
           </div>
           <div class="input">
-            <input type="text" placeholder="제조사" id="compName" name="compName" value="<%= post.compName %>"
-              class="form-control <%= (errors.compName)?'is-invalid':'' %>">
-            <% if(errors.compName){ %>
-            <span class="invalid-feedback"><%= errors.compName.message %></span>
+            <input type="text" placeholder="제조사" id="compname" name="compname" value="<%= post.compname %>"
+              class="form-control <%= (errors.compname)?'is-invalid':'' %>">
+            <% if(errors.compname){ %>
+            <span class="invalid-feedback"><%= errors.compname.message %></span>
             <% } %>
           </div>
           <div class="input">
-            <input type="text" placeholder="제품명" id="prodName" name="prodName" value="<%= post.prodName %>"
-              class="form-control <%= (errors.prodName)?'is-invalid':'' %>">
-            <% if(errors.prodName){ %>
-            <span class="invalid-feedback"><%= errors.prodName.message %></span>
+            <input type="text" placeholder="제품명" id="prodname" name="prodname" value="<%= post.prodname %>"
+              class="form-control <%= (errors.prodname)?'is-invalid':'' %>">
+            <% if(errors.prodname){ %>
+            <span class="invalid-feedback"><%= errors.prodname.message %></span>
             <% } %>
           </div>
           <% if(errors.unhandled){ %>

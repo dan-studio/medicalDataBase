@@ -35,7 +35,6 @@ app.use(methodOverride('_method'))
 app.use(flash())
 app.use(session({secret: process.env.COOKIE_SECRET, resave: true, saveUninitialized: true}));
 app.use('/static', express.static(path.join(__dirname, 'static'))) // static 폴더 파일 불러오기
-
 //passport // 2
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,7 +48,7 @@ app.use(function(req,res,next){
 
 //Routes
 app.use('/', require('./routes/home'));
-app.use('/posts', require('./routes/post'));
+app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 
 //포트 세팅

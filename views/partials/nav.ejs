@@ -1,7 +1,7 @@
 <nav>
   <% if(isAuthenticated){ %>
   <img src="../../public/images/carrot.png" alt="당근아이콘">
-  <span class="title">의약품 유형 데이터베이스</span>
+  <span class="title"><a class="title" href="/posts">의약품 유형 데이터베이스</a></span>
   <a href="/logout" class="nav">🙋 로그아웃 👋</a>
   <a href="/" class="nav">💻 about ⚙️</a>
   <a href="/posts" class="nav">💊 의약품 리스트 💊</a>
@@ -11,7 +11,7 @@
   <% } %>
   <% } else { %>
   <img src="../../public/images/carrot.png" alt="당근아이콘">
-  <span class="title">의약품 유형 데이터베이스</span>
+  <span class="title"><a class="title" href="/posts">의약품 유형 데이터베이스</a></span>
   <a href="/login" class="nav">로그인</a>
   <% } %>
 </nav>

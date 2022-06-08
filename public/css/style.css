@@ -19,7 +19,8 @@ img{
 }
 .title{
   font-size: 16px;
-  margin: 8px;
+  color: white;
+  text-decoration: none;
 }
 .login{
   margin-top: 20px;

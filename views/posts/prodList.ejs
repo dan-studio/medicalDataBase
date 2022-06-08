@@ -4,9 +4,9 @@
 <% posts.forEach(function(post) { %>
 <tr>
   <td><%= post.sort %></td>
-  <td><%= post.compName %></td>
-  <td><%= post.prodName %></td>
-  <td id="regDate"><%= post.regDate %></td>
+  <td><%= post.compname %></td>
+  <td><%= post.prodname %></td>
+  <td id="regDate"><%= post.regdate %></td>
   <td><%= post.author ? post.author.username : "" %></td>
   <td>
     <% if(isAuthenticated && post.author && currentUser.id == post.author.id){%>

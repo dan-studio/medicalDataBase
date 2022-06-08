@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const Post = require('../models/Posts')
-const User = require('../models/Users')
-const util = require('../util')
+var express  = require('express');
+var router = express.Router();
+var Post = require('../models/Post');
+var User = require('../models/User');
+var util = require('../util');
 
 // Index 
 router.get('/', async function (req, res) {
@@ -18,7 +18,7 @@ router.get('/', async function (req, res) {
   let maxPage = Math.ceil(count / limit);
   let posts = await Post.find(searchQuery)
     .populate('author')
-    .sort('-regDate')
+    .sort('-regdate')
     .skip(skip)
     .limit(limit)
     .exec();
@@ -83,18 +83,18 @@ function checkPermission(req, res, next) {
   })
 }
 
-function createSearchQuery(queries){
+function createSearchQuery(queries){ // 4
   var searchQuery = {};
-  if(queries.searchType && queries.searchText && queries.searchText.length >= 3){ // query에 searchType, searchText가 존재하고 searchText가 2글자 이상인 경우에만 search query를 만들고, 이외의 경우에는 {}를 전달하여 모든 게시물이 검색되도록 함.
+  if(queries.searchType && queries.searchText && queries.searchText.length >= 2){
     var searchTypes = queries.searchType.toLowerCase().split(',');
     var postQueries = [];
-    if(searchTypes.indexOf('compName')>=0){
-      postQueries.push({ compName: { $regex: new RegExp(queries.searchText, 'i') } }); // 
+    if(searchTypes.indexOf('compname')>=0){
+      postQueries.push({ compname: { $regex: new RegExp(queries.searchText, 'i') } });
     }
-    if(searchTypes.indexOf('prodName')>=0){
-      postQueries.push({ prodName: { $regex: new RegExp(queries.searchText, 'i') } });
+    if(searchTypes.indexOf('prodname')>=0){
+      postQueries.push({ prodname: { $regex: new RegExp(queries.searchText, 'i') } });
     }
-    if(postQueries.length > 0) searchQuery = {$or:postQueries}; // 3
+    if(postQueries.length > 0) searchQuery = {$or:postQueries};
   }
   return searchQuery;
 }
