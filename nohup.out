@@ -1,0 +1,6 @@
+
+> start
+> node server.js
+
+server on! http://localhost:8080
+DB Connected
